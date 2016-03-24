@@ -22,7 +22,6 @@
             $(".content").empty();
             $(".content").load("home.html");
         });
-
         $(".m-todo").on("click", function () {
             $(".content").empty();
             $(".content").load("todo.html");
@@ -30,6 +29,10 @@
         $(".m-pokelist").on("click", function () {
             $(".content").empty();
             $(".content").load("pokelist.html");
+        })
+        $(".m-locations").on("click", function () {
+            $(".content").empty();
+            $(".content").load("locations.html");
         });
 
 
