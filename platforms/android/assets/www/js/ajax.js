@@ -1,4 +1,23 @@
-    var getPokemon = function (pokemon, elem) {
+ var makeNofif = function(txt){
+     var html = '<div class="notification notification-danger"><p>Error</p><span>'+txt+'</span></div>';
+
+     $('.notif').html(html);
+
+ }
+
+ var doTokenShit = function(){
+        var token = window.localStorage.getItem('token');
+
+        if (token) {
+            $.ajaxSetup({
+                headers: {
+                    'token': token
+                }
+            });
+        }
+ }
+
+var getPokemon = function (pokemon, elem) {
         console.log("pokemon");
         if (pokemon == undefined) {
             pokemon = '1';
@@ -23,19 +42,107 @@
                 elem.find(".collapsible-body").empty();
                 elem.find(".collapsible-body").html(detailhtml);
             });
+}
+
+var postLogin = function (e,p){
+        $.post( "https://apipoke.herokuapp.com/api/token", { email: e, password: p } ).done(function (data){
+            console.log(data.data)
+            console.log('id: '+data.data.id)
+            localStorage.setItem('token',data.data.token)
+            localStorage.setItem('uid',data.data.id)
+            doTokenShit();
+            $('.toolbar').removeClass('hide');
+            $(".content").empty();
+            $(".content").load("home.html");
+        }).fail(function() {
+    makeNofif('no login biotch')
+  });
     }
+
+var catchPokemon = function (id){
+        $.post( "https://apipoke.herokuapp.com/api/users/"+id+"/location/", { long: 51.691450, lat: 5.29291  } ).done(function (data){
+
+        }).fail(function() {
+    makeNofif('no poke biotch')
+  });
+}
 
     var allPokemon = function () {
         var listContent = '';
         var pkeNR = 0;
-
+        console.log('get all the pokemon')
         $.getJSON('https://pokeapi.co/api/v2/pokemon', function (data) {
             $.each(data.results, function () {
                 pkeNR++;
-                listContent += '<li class="animated fadeinright delay-1 pokeitem" data-pokemon="' + pkeNR + '"><div class="collapsible-header"><i class="ion-android-more-vertical right"></i>' + pkeNR + ' - ' + this.name + '</div><div class="collapsible-body"><p>lorem</p></div></li>';
+                listContent += '<li class="animated fadeinright delay-1 pokeitem" data-pokemon="' + pkeNR + '"><div class="collapsible-header"><i class="ion-android-more-vertical right"></i>' + pkeNR + ' - ' + this.name + '</div><div class="collapsible-body"><p>LOADING</p></div></li>';
             });
 
             $('.pokelist').html(listContent);
         });
 
-    }
+}
+    var getProfile = function (cb) {
+        $.getJSON('https://apipoke.herokuapp.com/api/profile', function (data) {
+
+            console.log(data);
+            cb(data.data);
+        });
+    };
+
+    var getHome = function (cb) {
+        $.getJSON('https://apipoke.herokuapp.com/api/profile', function (data) {
+
+            var uid = localStorage.getItem('uid')
+            var pokecount = 'you have: '+ Object.keys(data.data.pokemon).length +' Pokemon'
+            var elem = $('.content')
+
+            elem.find(".email").empty()
+            elem.find(".email").html(data.data.local.email)
+
+            $.getJSON('https://apipoke.herokuapp.com/api/users/'+uid+'/pokemon', function (data) {
+                console.log(data)
+                var listContent = '';
+                var pkeNR = 0;
+                $.each(data.data, function () {
+                pkeNR++;
+                listContent += '<li class="animated fadeinright delay-1 pokeitem" data-pokemon="' + this.pokeid + '"><div class="collapsible-header"><i class="ion-android-more-vertical right"></i>' + this.pokeid + ' - ' + this.name + '<span class="right">'+ this.caught_at +'</span></div><div class="collapsible-body"><p>LOADING</p></div></li>';
+            });
+
+            $('.pokelist').html(listContent);
+
+            elem.find('.pokecount').empty()
+            elem.find('.pokecount').html(pokecount)
+
+            });
+
+        });
+    };
+
+    var getLocations = function (cb) {
+        var locat = [];
+        var c = 0;
+        $.getJSON('https://apipoke.herokuapp.com/api/locations', function (data) {
+            $.each(data.data, function () {
+                locat[c] = {
+                    pokeid: this.pokeid,
+                    latlng: {lat: this.startLat, lng: this.startLong},
+                    endlatlng: {lat: this.endLat, lng: this.endLong}
+                }
+
+            })
+            cb(locat);
+
+        });
+
+    };
+
+    var getApi = function () {
+        var listContent = '';
+        $.getJSON('https://apipoke.herokuapp.com/api/', function (data) {
+            console.log(data);
+            listContent = data
+
+            $('.divcontent').html(listContent);
+        });
+
+    };

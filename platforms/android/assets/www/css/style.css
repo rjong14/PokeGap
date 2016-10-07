@@ -24,7 +24,7 @@ Primary use: App & Mobile Website
 
 body {
     font-family: 'Open Sans', sans-serif;
-    background: #FFF;
+    background-color: #f1f4f5;
     color: #76838f;
     overflow-x: hidden;
 }
@@ -646,6 +646,10 @@ blockquote {
 
 #content {
     overflow: auto;
+}
+
+.content{
+    height: 100%;
 }
 
 

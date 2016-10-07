@@ -76,7 +76,7 @@ function initiate_plugins() {
     });
 
     // Swipebox
-    $('.swipebox').swipebox();
+    //$('.swipebox').swipebox();
 
     // Masonry
     $('.grid').masonry({
@@ -335,7 +335,7 @@ $('#open-left').sideNav({
 });
 
 // Swipebox
-$('.swipebox').swipebox();
+//$('.swipebox').swipebox();
 
 // Masonry
 $('.grid').masonry({

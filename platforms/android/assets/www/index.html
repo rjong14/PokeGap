@@ -22,11 +22,12 @@
     <link href="css/keyframes.css" rel="stylesheet" type="text/css">
     <link href="css/materialize.min.css" rel="stylesheet" type="text/css">
     <link href="css/swiper.css" rel="stylesheet" type="text/css">
-    <link href="css/swipebox.min.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/map.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="cordova.js"></script>
-    <script src="js/jquery-2.2.1.min.js"></script>
+    <script src="js/jquery-3.0.js"></script>
     <script src="js/jqmobile.js"></script>
+
 </head>
 
 <body>
@@ -47,18 +48,46 @@
                     </div>
                 </div>
             </li>
-            <li><a href="#" class="no-child m-home" data-transition="slide" data-role="button"><i class="ion-android-home"></i>HOME</a></li>
-            <li><a href="#" class="no-child m-pokelist" data-transition="slide" data-role="button"><i class="ion-android-list"></i>Pokelist</a></li>
+            <li><a href="#" class="no-child m-home" data-role="button"><i class="ion-android-home"></i>HOME</a></li>
+            <li><a href="#" class="no-child m-pokelist" data-role="button"><i class="ion-android-list"></i>Pokelist</a></li>
             <li><a href="#" class="no-child m-locations" data-transition="slide" data-role="button"><i class="ion-android-list"></i>Locations</a></li>
-            <li><a href="#" class="no-child m-todo" data-transition="slide" data-role="button"><i class="ion-android-list"></i>TODO</a></li>
         </ul>
+
+
+
+        <ul id="slide-out" class="side-nav right-aligned" style="right: 0px;">
+        <li class="sidenav-header">
+            <h1>PokeGap</h1>
+        </li>
+        <!-- Tabs -->
+        <li>
+          <ul class="tabs" style="width: 100%;">
+            <li class="tab col s3"><a class="active" href="#sidebar1">Info</a></li>
+            <li class="tab col s3"><a href="#sidebar2">Options</a></li>
+          <div class="indicator" style="right: 120px; left: 0px;"></div></ul>
+        </li>
+        <li id="sidebar1" class="p-20">
+
+
+            <p>do some info</p>
+
+
+        </li>
+        <li id="sidebar2" class="p-20">
+
+
+            <p>do some logout</p>
+
+
+        </li>
+      </ul>
         <!-- End of Sidebars -->
 
         <!-- Page Content -->
 
         <!-- Toolbar -->
 
-        <div id="toolbar" class="primary-color">
+        <div id="toolbar" class="toolbar primary-color hide">
             <div class="open-left" id="open-left" data-activates="slide-out-left">
                 <i class="ion-android-menu"></i>
             </div>
@@ -69,33 +98,37 @@
         </div>
 
 
-        <div id="content" class="content">
+        <div id="content" class="content grey-blue">
+        <!-- Main Content -->
+        <div class="login-form animated fadeinup delay-2 z-depth-1">
+            <div class="notif"></div>
+              <h1>Login</h1>
+              <div class="input-field">
+                <i class="ion-android-contact prefix"></i>
+                <input class="email validate" id="email" type="text">
+                <label for="email">email</label>
+              </div>
 
-            <div class="h-banner animated fadeindown" style="background-color: #263238">
-                <div class="parallax">
-                    <span class="subtitle">away from home</span>
-                    <div class="banner-title">Home</div>
-                </div>
-            </div>
-            <!-- Main Content -->
-            <div style="height: 1000px">
-                <p>lol</p>
-            </div>
-
-            <!-- End of Main Contents -->
+              <div class="input-field" style="margin-bottom:20px;">
+                <i class="ion-android-lock prefix"></i>
+                <input class="password validate" id="password" type="password">
+                <label for="password">Password</label>
+              </div>
+                <button class="btn-login waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4">login</button>
+                <button class="btn-logadmin waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4">logadmin</button>
+          <span>Don't have an account? <a href="#" class="no-child m-signup" data-transition="slide" data-role="button">signup</a></span>
+        </div><!-- End of Main Contents -->
 
         </div>
         <!-- End of Page Content -->
-
-
     </div>
     <!-- End of Page Container -->
     <script src="js/ajax.js"></script>
+    <script src="js/map.js"></script>
     <script src="js/click.js"></script>
     <!--    <script src="js/plugins.js"></script>-->
     <!--    <script src="js/index.js"></script>-->
     <script src="js/materialize.min.js"></script>
-    <script src="js/jquery.swipebox.min.js"></script>
     <script src="js/jquery.smoothState.min.js"></script>
     <script src="js/swiper.min.js"></script>
     <script src="js/jquery.mixitup.min.js"></script>
