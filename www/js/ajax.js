@@ -1,4 +1,10 @@
- var makeNofif = function(txt){
+function onDeviceReady() {
+
+    navigator.geolocation.getCurrentPosition(onSuccess,onError,geoOpts);
+    console.log("navigator.geolocation works well");
+}
+
+var makeNofif = function(txt){
      var html = '<div class="notification notification-danger"><p>Error</p><span>'+txt+'</span></div>';
 
      $('.notif').html(html);
@@ -17,6 +23,7 @@
         }
  }
 
+ // AJAX
 var getPokemon = function (pokemon, elem) {
         console.log("pokemon");
         if (pokemon == undefined) {
@@ -60,7 +67,7 @@ var postLogin = function (e,p){
     }
 
 var catchPokemon = function (id){
-        $.post( "https://apipoke.herokuapp.com/api/users/"+id+"/location/", { long: 51.691450, lat: 5.29291  } ).done(function (data){
+        $.post( "https://apipoke.herokuapp.com/api/users/"+id+"/location/", { lng: 51.688717, lat: 5.287348  } ).done(function (data){
 
         }).fail(function() {
     makeNofif('no poke biotch')
@@ -123,13 +130,15 @@ var catchPokemon = function (id){
         var c = 0;
         $.getJSON('https://apipoke.herokuapp.com/api/locations', function (data) {
             $.each(data.data, function () {
-                locat[c] = {
+                locat.push({
                     pokeid: this.pokeid,
-                    latlng: {lat: this.startLat, lng: this.startLong},
-                    endlatlng: {lat: this.endLat, lng: this.endLong}
-                }
+                    latlng: this.latlng
+                })
+                console.log(locat);
 
             })
+            console.log(locat)
+            console.log(locat)
             cb(locat);
 
         });

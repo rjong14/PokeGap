@@ -6,6 +6,7 @@ var opts = {
         lng: 5.287144
     },
     zoom: 15,
+    disableDefaultUI: true,
     styles: [{
         "featureType": "all",
         "elementType": "geometry",
@@ -111,27 +112,10 @@ var opts = {
     }]
 };
 
-//        var mapElement = document.getElementById('map');
-//        var map = new google.maps.Map(mapElement, mapOptions);
-//var locat = [
-//    {
-//        pokeid: '1',
-//        latlng: {
-//            lat: 51.68853980000001,
-//            lng: 5.287459099999978
-//        }
-//                },
-//    {
-//        pokeid: '9',
-//        latlng: {
-//            lat: 51.7986066,
-//            lng: 5.189319399999931
-//        }
-//                }
-//            ];
-
 var loadLocations = function () {
     getLocations(function (locat) {
+        console.log('got locat');
+        console.log(locat);
         $.each(locat, function () {
             marker = new google.maps.Marker({
                 icon: 'https://mapbuildr.com/assets/img/markers/ellipse-black.png',
@@ -139,21 +123,6 @@ var loadLocations = function () {
                 map: map,
                 pokeid: this.pokeid
             });
-            rectangle = new google.maps.Rectangle({
-                strokeColor: '#FF0000',
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: '#FF0000',
-                fillOpacity: 0.35,
-                map: map,
-                bounds: {
-                    north: this.latlng.lat,
-                    south: this.endlatlng.lat,
-                    east: this.endlatlng.lng,
-                    west: this.latlng.lng
-                }
-            });
-
             link = '';
             bindInfoWindow(marker, map, this.pokeid);
         })
@@ -189,6 +158,11 @@ function bindInfoWindow(marker, map, pokeid) {
         infoWindowVisible(false);
     });
 };
+
+var mapCenter = function (lat, lng){
+    var center = new google.maps.LatLng(lat, lng);
+    map.panTo(center);
+}
 
 var initMap = function () {
     map = new google.maps.Map(document.getElementById('map'), opts);
