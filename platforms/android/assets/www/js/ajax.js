@@ -1,4 +1,4 @@
- var makeNofif = function(txt){
+var makeNofif = function(txt){
      var html = '<div class="notification notification-danger"><p>Error</p><span>'+txt+'</span></div>';
 
      $('.notif').html(html);
@@ -17,6 +17,7 @@
         }
  }
 
+ // AJAX
 var getPokemon = function (pokemon, elem) {
         console.log("pokemon");
         if (pokemon == undefined) {
@@ -25,6 +26,31 @@ var getPokemon = function (pokemon, elem) {
         var call_url = 'https://pokeapi.co/api/v2/pokemon/' + pokemon;
         console.log("2");
         console.log(call_url);
+
+        var detailhtml = "";
+
+        $.getJSON(call_url, function (data) {
+                console.log("json");
+                console.log(data.name);
+                detailhtml += '<ul><li>Name : ' + data.name + '</li><li>Weight : ' + data.weight + '</li></ul><h5>types :</h5><ul>';
+                $.each(data.types, function () {
+                    detailhtml += '<li>' + this.type.name + '</li>';
+                });
+                detailhtml += '</ul>'
+            })
+            .done(function () {
+
+                elem.find(".collapsible-body").empty();
+                elem.find(".collapsible-body").html(detailhtml);
+            });
+}
+
+var getCatch = function (pokemon) {
+        console.log("pokemon");
+        if (pokemon == undefined) {
+            return;
+        }
+        var call_url = 'https://pokeapi.co/api/v2/pokemon/' + pokemon;
 
         var detailhtml = "";
 
@@ -59,8 +85,11 @@ var postLogin = function (e,p){
   });
     }
 
-var catchPokemon = function (id){
-        $.post( "https://apipoke.herokuapp.com/api/users/"+id+"/location/", { long: 51.691450, lat: 5.29291  } ).done(function (data){
+var catchPokemon = function (latlng){
+    var uid = window.localStorage.getItem('uid');
+    console.log(uid);
+    console.log(latlng);
+        $.post( "https://apipoke.herokuapp.com/api/users/"+uid+"/location/", latlng).done(function (data){
 
         }).fail(function() {
     makeNofif('no poke biotch')
@@ -123,13 +152,16 @@ var catchPokemon = function (id){
         var c = 0;
         $.getJSON('https://apipoke.herokuapp.com/api/locations', function (data) {
             $.each(data.data, function () {
-                locat[c] = {
+                locat.push({
+                    id: this._id,
                     pokeid: this.pokeid,
-                    latlng: {lat: this.startLat, lng: this.startLong},
-                    endlatlng: {lat: this.endLat, lng: this.endLong}
-                }
+                    latlng: this.latlng
+                })
+                console.log(locat);
 
             })
+            console.log(locat)
+            console.log(locat)
             cb(locat);
 
         });

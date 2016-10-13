@@ -1,9 +1,3 @@
-function onDeviceReady() {
-
-    navigator.geolocation.getCurrentPosition(onSuccess,onError,geoOpts);
-    console.log("navigator.geolocation works well");
-}
-
 var makeNofif = function(txt){
      var html = '<div class="notification notification-danger"><p>Error</p><span>'+txt+'</span></div>';
 
@@ -51,6 +45,31 @@ var getPokemon = function (pokemon, elem) {
             });
 }
 
+var getCatch = function (pokemon) {
+        console.log("pokemon");
+        if (pokemon == undefined) {
+            return;
+        }
+        var call_url = 'https://pokeapi.co/api/v2/pokemon/' + pokemon;
+
+        var detailhtml = "";
+
+        $.getJSON(call_url, function (data) {
+                console.log("json");
+                console.log(data.name);
+                detailhtml += '<ul><li>Name : ' + data.name + '</li><li>Weight : ' + data.weight + '</li></ul><h5>types :</h5><ul>';
+                $.each(data.types, function () {
+                    detailhtml += '<li>' + this.type.name + '</li>';
+                });
+                detailhtml += '</ul>'
+            })
+            .done(function () {
+
+                elem.find(".collapsible-body").empty();
+                elem.find(".collapsible-body").html(detailhtml);
+            });
+}
+
 var postLogin = function (e,p){
         $.post( "https://apipoke.herokuapp.com/api/token", { email: e, password: p } ).done(function (data){
             console.log(data.data)
@@ -66,8 +85,11 @@ var postLogin = function (e,p){
   });
     }
 
-var catchPokemon = function (id){
-        $.post( "https://apipoke.herokuapp.com/api/users/"+id+"/location/", { lng: 51.688717, lat: 5.287348  } ).done(function (data){
+var catchPokemon = function (latlng){
+    var uid = window.localStorage.getItem('uid');
+    console.log(uid);
+    console.log(latlng);
+        $.post( "https://apipoke.herokuapp.com/api/users/"+uid+"/location/", latlng).done(function (data){
 
         }).fail(function() {
     makeNofif('no poke biotch')
@@ -131,6 +153,7 @@ var catchPokemon = function (id){
         $.getJSON('https://apipoke.herokuapp.com/api/locations', function (data) {
             $.each(data.data, function () {
                 locat.push({
+                    id: this._id,
                     pokeid: this.pokeid,
                     latlng: this.latlng
                 })

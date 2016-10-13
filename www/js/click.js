@@ -43,6 +43,15 @@
 
         });
 
+      $('.btn-modal-close').on('click', function() {
+         $('.modal').css('display', 'none')
+      });
+      $('.modal').on('click', '.btn-catchpokemon', function(){
+          var id = $(this).attr('data');
+          console.log('btn '+ id)
+          app.getCatchPosition(id);
+      });
+
         $(".m-home").on("click", function () {
             $(".content").empty();
             $(".content").load("home.html");

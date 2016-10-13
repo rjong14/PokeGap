@@ -56,31 +56,32 @@
 
 
         <ul id="slide-out" class="side-nav right-aligned" style="right: 0px;">
-        <li class="sidenav-header">
-            <h1>PokeGap</h1>
-        </li>
-        <!-- Tabs -->
-        <li>
-          <ul class="tabs" style="width: 100%;">
-            <li class="tab col s3"><a class="active" href="#sidebar1">Info</a></li>
-            <li class="tab col s3"><a href="#sidebar2">Options</a></li>
-          <div class="indicator" style="right: 120px; left: 0px;"></div></ul>
-        </li>
-        <li id="sidebar1" class="p-20">
+            <li class="sidenav-header">
+                <h1>PokeGap</h1>
+            </li>
+            <!-- Tabs -->
+            <li>
+                <ul class="tabs" style="width: 100%;">
+                    <li class="tab col s3"><a class="active" href="#sidebar1">Info</a></li>
+                    <li class="tab col s3"><a href="#sidebar2">Options</a></li>
+                    <div class="indicator" style="right: 120px; left: 0px;"></div>
+                </ul>
+            </li>
+            <li id="sidebar1" class="p-20">
 
 
-            <p>do some info</p>
+                <p>do some info</p>
 
 
-        </li>
-        <li id="sidebar2" class="p-20">
+            </li>
+            <li id="sidebar2" class="p-20">
 
 
-            <p>do some logout</p>
+                <p>do some logout</p>
 
 
-        </li>
-      </ul>
+            </li>
+        </ul>
         <!-- End of Sidebars -->
 
         <!-- Page Content -->
@@ -99,27 +100,44 @@
 
 
         <div id="content" class="content grey-blue">
-        <!-- Main Content -->
-        <div class="login-form animated fadeinup delay-2 z-depth-1">
-            <div class="notif"></div>
-              <h1>Login</h1>
-              <div class="input-field">
-                <i class="ion-android-contact prefix"></i>
-                <input class="email validate" id="email" type="text">
-                <label for="email">email</label>
-              </div>
+            <!-- Main Content -->
+            <div class="login-form animated fadeinup delay-2 z-depth-1">
+                <div class="notif"></div>
+                <h1>Login</h1>
+                <div class="input-field">
+                    <i class="ion-android-contact prefix"></i>
+                    <input class="email validate" id="email" type="text">
+                    <label for="email">email</label>
+                </div>
 
-              <div class="input-field" style="margin-bottom:20px;">
-                <i class="ion-android-lock prefix"></i>
-                <input class="password validate" id="password" type="password">
-                <label for="password">Password</label>
-              </div>
+                <div class="input-field" style="margin-bottom:20px;">
+                    <i class="ion-android-lock prefix"></i>
+                    <input class="password validate" id="password" type="password">
+                    <label for="password">Password</label>
+                </div>
                 <button class="btn-login waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4">login</button>
                 <button class="btn-logadmin waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4">logadmin</button>
-          <span>Don't have an account? <a href="#" class="no-child m-signup" data-transition="slide" data-role="button">signup</a></span>
-        </div><!-- End of Main Contents -->
+                <span>Don't have an account? <a href="#" class="no-child m-signup" data-transition="slide" data-role="button">signup</a></span>
+            </div>
+            <!-- End of Main Contents -->
         </div>
         <!-- End of Page Content -->
+
+        <!-- Modal-->
+        <div id="modal" class="modal modal-fixed-footer" style="transform: scaleX(1); z-index: 1003; opacity: 1; top: 10%;">
+            <div class="modal-content">
+                <div class="notif"></div>
+                <h4 class="modal-Header">Modal Header</h4>
+                <div class="modal-inner">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button href="#!" class="modal-action btn-modal-close modal-close waves-effect waves-green btn-flat ">close</button>
+            </div>
+        </div>
+        <!-- End Modal-->
+
+
     </div>
     <!-- End of Page Container -->
     <script src="js/script.js"></script>

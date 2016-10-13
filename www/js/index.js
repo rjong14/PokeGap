@@ -1,4 +1,5 @@
 var app = {
+    locid: 0,
     // geo options
     geoOpts: { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true },
     // on err
@@ -7,8 +8,25 @@ var app = {
           'message: ' + err.message + '\n');
     },
     onSuccess: function(position){
-            var myLat = position.coords.latitude;
-            var myLong = position.coords.longitude;
+        var myLat = position.coords.latitude;
+        var myLong = position.coords.longitude;
+        mapCenter(myLat,myLong);
+    },
+    onCatch: function(position){
+        console.log('oncatch '+ this.locid)
+        var latlng = {lat: position.coords.latitude, lng: position.coords.longitude, id: this.locid};
+        catchPokemon(latlng);
+    },
+    getCurrentPosition: function(){
+        navigator.geolocation.getCurrentPosition(this.onSuccess,this.onError,this.geoOpts);
+    },
+    getCatchPosition: function(id){
+        locid = id;
+        console.log('get id: '+id+' locid: '+ this.locid);
+        navigator.geolocation.getCurrentPosition(this.onCatch,this.onError,this.geoOpts);
+    },
+    watchPosition: function(){
+      navigator.geolocation.watchPosition(this.onSuccess,this.onError,this.geoOpts);
     },
     // Application Constructor
     initialize: function () {
@@ -24,7 +42,6 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
-        navigator.geolocation.getCurrentPosition(onSuccess,onError,geoOpts);
         app.receivedEvent('deviceready');
             if (cordova.platformId == 'android') {
         StatusBar.backgroundColorByHexString("#b54543");

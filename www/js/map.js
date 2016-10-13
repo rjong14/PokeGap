@@ -5,7 +5,7 @@ var opts = {
         lat: 51.688401,
         lng: 5.287144
     },
-    zoom: 15,
+    zoom: 19,
     disableDefaultUI: true,
     styles: [{
         "featureType": "all",
@@ -118,19 +118,21 @@ var loadLocations = function () {
         console.log(locat);
         $.each(locat, function () {
             marker = new google.maps.Marker({
-                icon: 'https://mapbuildr.com/assets/img/markers/ellipse-black.png',
+                icon: 'img/pokeball.png',
                 position: this.latlng,
                 map: map,
-                pokeid: this.pokeid
+                pokeid: this.pokeid,
+                id: this.id
             });
             link = '';
-            bindInfoWindow(marker, map, this.pokeid);
+            bindInfoWindow(marker, map, this.pokeid, this.id);
         })
     })
 };
 
 
-function bindInfoWindow(marker, map, pokeid) {
+function bindInfoWindow(marker, map, pokeid, id) {
+    console.log('before bind id: '+ id)
     var infoWindowVisible = (function () {
         var currentlyVisible = false;
         return function (visible) {
@@ -142,29 +144,55 @@ function bindInfoWindow(marker, map, pokeid) {
     }());
     iw = new google.maps.InfoWindow();
     google.maps.event.addListener(marker, 'click', function () {
-        if (infoWindowVisible()) {
-            iw.close();
-            infoWindowVisible(false);
-        } else {
-            var html = "<div style='color:#000;background-color:#fff;padding:5px;width:150px;'><h4>" + pokeid + "</h4></div>";
-            iw = new google.maps.InfoWindow({
-                content: html
-            });
-            iw.open(map, marker);
-            infoWindowVisible(true);
-        }
+        console.log('bind id: '+ id)
+        var button = '<button data="'
+            + id
+            +'" class="btn-catchpokemon waves-effect waves-light btn-large accent-color width-50 m-b-20 animated bouncein delay-4">Catch Pokemon</button>';
+
+        $('.modal-inner').html(button)
+        $('.modal-header').html('catch pokemon')
+        $('.modal').css('display','block')
+
+
+//        if (infoWindowVisible()) {
+//            iw.close();
+//            infoWindowVisible(false);
+//        } else {
+//            var html = '<div style="color:#000;background-color:#fff;height:100%;width:100%;"><h4>'
+//            + '</h4><button data="'
+//            + pokeid
+//            +'" class="btn-catchpokemon waves-effect waves-light btn-large accent-color width-50 m-b-20 animated bouncein delay-4">Catch Pokemon</button></div>';
+//            iw = new google.maps.InfoWindow({
+//                content: html
+//            });
+//            iw.open(map, marker);
+//            infoWindowVisible(true);
+//        }
     });
     google.maps.event.addListener(iw, 'closeclick', function () {
         infoWindowVisible(false);
     });
 };
 
+
+
+var meMarker;
 var mapCenter = function (lat, lng){
     var center = new google.maps.LatLng(lat, lng);
+    if(!meMarker){
+        meMarker.setMap(null);
+    }
     map.panTo(center);
+    meMarker.setPosition(center);
 }
 
 var initMap = function () {
     map = new google.maps.Map(document.getElementById('map'), opts);
     loadLocations();
+        meMarker = new google.maps.Marker({
+                position: opts.center,
+                map: map,
+            });
+    app.getCurrentPosition();
+    app.watchPosition();
 };
