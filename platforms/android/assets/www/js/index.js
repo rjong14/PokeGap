@@ -1,7 +1,7 @@
 var app = {
     locid: 0,
     // geo options
-    geoOpts: { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true },
+    geoOpts: { maximumAge: 3000, timeout: 10000, enableHighAccuracy: true },
     // on err
     onError: function (err){
           alert('code: '    + err.code    + '\n' +

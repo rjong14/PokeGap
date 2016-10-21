@@ -27,17 +27,18 @@
     <link href="css/data.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="cordova.js"></script>
     <script src="js/jquery-3.0.js"></script>
-    <script src="js/jqmobile.js"></script>
+    <script src="js/jqmigrate.js"></script>
+<!--    <script src="js/jquery-2.2.1.min.js"></script>-->
+<!--    <script src="js/jqmobile.js"></script>-->
 
 </head>
 
 <body>
-    <div class="m-scene" id="main">
-        <!-- Main Container -->
+    <header>
 
         <!-- Sidebars -->
         <!-- Left Sidebar -->
-        <ul id="slide-out-left" class="side-nav">
+        <ul id="slide-out-left" class="side-nav fixed hide">
             <li>
                 <div class="sidenav-header primary-color">
                     <div class="nav-avatar">
@@ -56,7 +57,7 @@
 
 
 
-        <ul id="slide-out" class="side-nav right-aligned" style="right: 0px;">
+        <ul id="slide-out" class="side-nav right-aligned hide" style="right: 0px;">
             <li class="sidenav-header">
                 <h1>PokeGap</h1>
             </li>
@@ -71,14 +72,16 @@
             <li id="sidebar1" class="p-20">
 
 
-                <p>do some info</p>
+                <p>email: <span class="o-email"></span></p>
+                <p>You have: <span class="o-pokemon"></span> pokemon</p>
+                <p class="isAdmin"></p>
 
 
             </li>
             <li id="sidebar2" class="p-20">
 
 
-                <p>do some logout</p>
+                <button href="#!" class="btn-logout secondary-color waves-effect waves-green btn-flat ">logout</button>
 
 
             </li>
@@ -89,7 +92,7 @@
 
         <!-- Toolbar -->
 
-        <div id="toolbar" class="toolbar primary-color hide">
+        <div id="toolbar" class="header toolbar primary-color hide">
             <div class="open-left" id="open-left" data-activates="slide-out-left">
                 <i class="ion-android-menu"></i>
             </div>
@@ -99,11 +102,13 @@
             </div>
         </div>
 
+    </header>
 
-        <div id="content" class="content grey-blue">
+
+        <main>
+        <div id="content" class="main content grey-blue">
             <!-- Main Content -->
             <div class="login-form animated fadeinup delay-2 z-depth-1">
-                <div class="notif"></div>
                 <h1>Login</h1>
                 <div class="input-field">
                     <i class="ion-android-contact prefix"></i>
@@ -116,6 +121,10 @@
                     <input class="password validate" id="password" type="password">
                     <label for="password">Password</label>
                 </div>
+                    <p>
+                      <input type="checkbox" id="keeplog" class="keeplog" />
+                      <label for="keeplog">Keep logged in</label>
+                    </p>
                 <button class="btn-login waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4">login</button>
                 <button class="btn-logadmin waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4">logadmin</button>
                 <span>Don't have an account? <a href="#" class="no-child m-signup" data-transition="slide" data-role="button">signup</a></span>
@@ -123,13 +132,13 @@
             <!-- End of Main Contents -->
         </div>
         <!-- End of Page Content -->
-
+<main>
         <!-- Modal-->
-        <div id="modal" class="modal modal-fixed-footer" style="transform: scaleX(1); z-index: 1003; opacity: 1; top: 10%;">
+        <div id="modal" class="modal modal-marker modal-fixed-footer" style="transform: scaleX(1); z-index: 1003; opacity: 1; top: 10%;">
             <div class="modal-content">
                 <div class="notif"></div>
-                <h4 class="modal-Header">Modal Header</h4>
-                <div class="modal-inner">
+                <h4 class="marker-header">Modal Header</h4>
+                <div class="marker-inner">
                 </div>
             </div>
             <div class="modal-footer">
@@ -138,8 +147,17 @@
         </div>
         <!-- End Modal-->
 
+        <div id="notif" class="notif modal bottom-sheet" style="bottom: 0px; z-index: 1003; display: none; opacity: 1;">
+          <div class="modal-content">
+            <h4>notif</h4>
+            <p class="notif-content">A bunch of text</p>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-action notif-close  waves-effect waves-green btn-flat">close</a>
+
 
     </div>
+        </div>
     <!-- End of Page Container -->
     <script src="js/script.js"></script>
     <script src="js/ajax.js"></script>
@@ -147,12 +165,16 @@
     <script src="js/click.js"></script>
     <!--    <script src="js/plugins.js"></script>-->
     <script src="js/index.js"></script>
+    <script>
+    checkloggedin();
+    </script>
     <script src="js/materialize.min.js"></script>
     <script src="js/jquery.smoothState.min.js"></script>
     <script src="js/swiper.min.js"></script>
     <script src="js/jquery.mixitup.min.js"></script>
     <script src="js/chart.min.js"></script>
     <script src="js/functions.js"></script>
+    <script src="js/jqmobile.js"></script>
 </body>
 
 </html>

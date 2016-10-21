@@ -145,13 +145,16 @@ function bindInfoWindow(marker, map, pokeid, id) {
     iw = new google.maps.InfoWindow();
     google.maps.event.addListener(marker, 'click', function () {
         console.log('bind id: '+ id)
-        var button = '<button data="'
+        var button = '<span class="p'
+            + pokeid
+            + ' sprite"></span>'
+            + '<button data="'
             + id
             +'" class="btn-catchpokemon waves-effect waves-light btn-large accent-color width-50 m-b-20 animated bouncein delay-4">Catch Pokemon</button>';
 
-        $('.modal-inner').html(button)
-        $('.modal-header').html('catch pokemon')
-        $('.modal').css('display','block')
+        $('.marker-inner').html(button)
+        $('.marker-header').html('catch pokemon')
+        $('.modal-marker').css('display','block')
 
 
 //        if (infoWindowVisible()) {
@@ -190,6 +193,7 @@ var initMap = function () {
     map = new google.maps.Map(document.getElementById('map'), opts);
     loadLocations();
         meMarker = new google.maps.Marker({
+                icon: 'img/redsmall.png',
                 position: opts.center,
                 map: map,
             });

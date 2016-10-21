@@ -15,6 +15,9 @@
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
+    <feature name="Share">
+        <param name="android-package" value="nl.madebymark.share.Share" />
+    </feature>
     <allow-intent href="market:*" />
     <name>HelloCordova</name>
     <description>

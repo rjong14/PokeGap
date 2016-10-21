@@ -23,6 +23,10 @@
                         {
                             "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Share\"><param name=\"android-package\" value=\"nl.madebymark.share.Share\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -54,6 +58,9 @@
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
         "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "nl.madebymark.share": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         }
     },
@@ -90,12 +97,20 @@
                 "cordova.InAppBrowser.open",
                 "window.open"
             ]
+        },
+        {
+            "file": "plugins/nl.madebymark.share/www/share.js",
+            "id": "nl.madebymark.share.Share",
+            "clobbers": [
+                "window.navigator.share"
+            ]
         }
     ],
     "plugin_metadata": {
         "cordova-plugin-whitelist": "1.2.1",
         "cordova-plugin-statusbar": "2.1.2",
         "cordova-plugin-geolocation": "2.1.0",
-        "cordova-plugin-inappbrowser": "1.5.0"
+        "cordova-plugin-inappbrowser": "1.5.0",
+        "nl.madebymark.share": "0.1.1"
     }
 }

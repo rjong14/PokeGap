@@ -31,6 +31,13 @@ module.exports = [
             "cordova.InAppBrowser.open",
             "window.open"
         ]
+    },
+    {
+        "file": "plugins/nl.madebymark.share/www/share.js",
+        "id": "nl.madebymark.share.Share",
+        "clobbers": [
+            "window.navigator.share"
+        ]
     }
 ];
 module.exports.metadata =
@@ -39,7 +46,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.2.1",
     "cordova-plugin-statusbar": "2.1.2",
     "cordova-plugin-geolocation": "2.1.0",
-    "cordova-plugin-inappbrowser": "1.5.0"
+    "cordova-plugin-inappbrowser": "1.5.0",
+    "nl.madebymark.share": "0.1.1"
 };
 // BOTTOM OF METADATA
 });
