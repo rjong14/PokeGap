@@ -31,10 +31,17 @@
         "is_top_level": true,
         "variables": {}
     },
+<<<<<<< HEAD
     "cordova-plugin-splashscreen": {
         "source": {
             "type": "registry",
             "id": "cordova-plugin-splashscreen@4.0.0"
+=======
+    "nl.madebymark.share": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-share"
+>>>>>>> origin/master
         },
         "is_top_level": true,
         "variables": {}

@@ -19,7 +19,11 @@
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
+<<<<<<< HEAD
         "cordova-plugin-splashscreen": {
+=======
+        "nl.madebymark.share": {
+>>>>>>> origin/master
             "PACKAGE_NAME": "io.cordova.hellocordova"
         }
     },

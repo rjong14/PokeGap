@@ -61,19 +61,19 @@ function initiate_plugins() {
     // Drag
     $('.drag-target').remove();
 
-    // Right Sidebar
-    $('#open-right').sideNav({
-        menuWidth: 240, // Default is 240
-        edge: 'right', // Choose the horizontal origin
-        closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
-    });
-
-    // Left Sidebar
-    $('#open-left').sideNav({
-        menuWidth: 240, // Default is 240
-        edge: 'left', // Choose the horizontal origin
-        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-    });
+//    // Right Sidebar
+//    $('#open-right').sideNav({
+//        menuWidth: 240, // Default is 240
+//        edge: 'right', // Choose the horizontal origin
+//        closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
+//    });
+//
+//    // Left Sidebar
+//    $('#open-left').sideNav({
+//        menuWidth: 240, // Default is 240
+//        edge: 'left', // Choose the horizontal origin
+//        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+//    });
 
     // Swipebox
     //$('.swipebox').swipebox();
@@ -331,16 +331,28 @@ $('#open-right').sideNav({
 $('#open-left').sideNav({
     menuWidth: 240, // Default is 240
     edge: 'left', // Choose the horizontal origin
-    closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+    closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
 });
+var fired = 'false';
+$('#open-left').on('click', function(){
+    if (fired == 'false'){
+        $('#open-left').sideNav({
+            menuWidth: 240, // Default is 240
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        });
+        fired = true;
+    }
+
+})
 
 // Swipebox
 //$('.swipebox').swipebox();
 
 // Masonry
-$('.grid').masonry({
-    itemSelector: '.grid-item'
-});
+//$('.grid').masonry({
+//    itemSelector: '.grid-item'
+//});
 
 // Scrolling Floating Action Button
 $(window).scroll(function () {

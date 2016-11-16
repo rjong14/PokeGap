@@ -185,15 +185,15 @@ blockquote {
 /* Colors */
 
 .accent-text {
-    color: #FF4081 !important;
+    color: #C62828 !important;
 }
 
 .accent-color {
-    background-color: #FF4081 !important;
+    background-color: #C62828 !important;
 }
 
 .accent-border {
-    border-color: #FF4081 !important;
+    border-color: #C62828 !important;
 }
 
 .primary-text {
@@ -206,6 +206,10 @@ blockquote {
 
 .primary-border {
     border-color: #2196F3 !important;
+}
+
+.secondary-color {
+    background-color: #1b95e0;
 }
 
 .header-color {
@@ -2997,4 +3001,42 @@ span.data-color {
 
 #filter .mix {
     width: 100%;
+}
+
+
+.ui-loading .ui-loader { display: block; }
+.ui-loader { display: none; position: absolute; opacity: .85; z-index: 100; left: 50%; width: 200px; margin-left: -130px; margin-top: -35px; padding: 10px 30px; }
+
+.isAdmin {
+    color: red;
+}
+
+p.ok {
+    color: green;
+}
+
+p.err {
+    color: red;
+}
+
+@media only screen and (max-width: 600px) {
+    .hide-on-small-only,
+    .hide-on-small-and-down {
+        display: none !important;
+    }
+}
+
+
+    header, main, footer {
+      padding-left: 240px;
+    }
+
+    @media only screen and (max-width : 992px) {
+      header, main, footer {
+        padding-left: 0;
+      }
+    }
+
+.side-nav.fixed a {
+    padding: 16px !important;
 }

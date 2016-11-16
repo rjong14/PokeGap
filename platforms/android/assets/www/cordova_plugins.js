@@ -33,10 +33,17 @@ module.exports = [
         ]
     },
     {
+<<<<<<< HEAD
         "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
         "id": "cordova-plugin-splashscreen.SplashScreen",
         "clobbers": [
             "navigator.splashscreen"
+=======
+        "file": "plugins/nl.madebymark.share/www/share.js",
+        "id": "nl.madebymark.share.Share",
+        "clobbers": [
+            "window.navigator.share"
+>>>>>>> origin/master
         ]
     }
 ];
@@ -47,7 +54,11 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "2.1.2",
     "cordova-plugin-geolocation": "2.1.0",
     "cordova-plugin-inappbrowser": "1.5.0",
+<<<<<<< HEAD
     "cordova-plugin-splashscreen": "4.0.0"
+=======
+    "nl.madebymark.share": "0.1.1"
+>>>>>>> origin/master
 };
 // BOTTOM OF METADATA
 });
