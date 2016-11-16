@@ -145,7 +145,10 @@ function bindInfoWindow(marker, map, pokeid, id) {
     iw = new google.maps.InfoWindow();
     google.maps.event.addListener(marker, 'click', function () {
         console.log('bind id: '+ id)
-        var button = '<button data="'
+        var button = '<span class="p'
+            + pokeid
+            + ' sprite"></span>'
+            + '<button data="'
             + id
             +'" class="btn-catchpokemon waves-effect waves-light btn-large accent-color width-50 m-b-20 animated bouncein delay-4">Catch Pokemon</button>';
 

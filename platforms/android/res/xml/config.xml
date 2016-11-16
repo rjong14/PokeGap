@@ -15,10 +15,24 @@
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
     <allow-intent href="market:*" />
-    <name>HelloCordova</name>
+    <splash density="port-hdpi" src="res/screens/android/screen-hdpi-portrait.png" />
+    <splash density="port-ldpi" src="res/screens/android/screen-ldpi-portrait.png" />
+    <splash density="port-mdpi" src="res/screens/android/screen-mdpi-portrait.png" />
+    <splash density="port-xhdpi" src="res/screens/android/screen-xhdpi-portrait.png" />
+    <icon density="ldpi" src="res/icons/android/ldpi.png" />
+    <icon density="mdpi" src="res/icons/android/mdpi.png" />
+    <icon density="hdpi" src="res/icons/android/hdpi.png" />
+    <icon density="xhdpi" src="res/icons/android/xhdpi.png" />
+    <icon density="xxhdpi" src="res/icons/android/xxhdpi.png" />
+    <icon density="xxxhdpi" src="res/icons/android/xxxhdpi.png" />
+    <name>PokeGap</name>
     <description>
-            A sample Apache Cordova application that responds to the deviceready event.
+            Pokemon GO clone.
         </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
             Apache Cordova Team
