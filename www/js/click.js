@@ -44,6 +44,9 @@
         $(".content").on("tap", ".btn-logadmin", function () {
             postLogin('administrator','administrator');
         });
+        $('.o-keep').on('tap', function(){
+            toggleloggedin($('.o-keep input'));
+        })
 
         $(".m-profile").on("tap", function () {
             $(".content").empty();

@@ -35,6 +35,13 @@ var doEachPoke = function(poke, cb) {
 
 var doIndex = function () {
     var user = JSON.parse(localStorage.getItem('user'))
+    var kl = JSON.parse(localStorage.getItem('keeplog'));
+
+    if(kl.checked == true){
+        // Check
+        $(".o-keep input").prop("checked", true);
+    }else{
+    }
     $('.o-email').html(user.local.email)
     $('.o-pokemon').html(Object.keys(user.pokemon).length)
     if (user.role = '56f1c852b40dfc085518788b') {
@@ -43,13 +50,33 @@ var doIndex = function () {
 
 }
 
+var toggleloggedin = function (elem) {
+    console.log(elem)
+    var kl = JSON.parse(localStorage.getItem('keeplog'));
+    if(elem.is(':checked')){
+        kl.checked = false;
+        console.log('unchecked')
+    }else{
+        kl.checked = true;
+        console.log('checked')
+    }
+
+    localStorage.setItem('keeplog', JSON.stringify(kl));
+    var klnew = JSON.parse(localStorage.getItem('keeplog'));
+    console.log(klnew.checked)
+
+}
+
 var checkloggedin = function () {
     console.log('check')
     var kl = JSON.parse(localStorage.getItem('keeplog'));
 
-    if (kl.checked = true) {
+    if (kl.checked == true) {
         console.log('checked')
         postLogin(kl.cred.e, kl.cred.p);
+    } else {
+        localStorage.clear();
+        location.reload(true);
     }
 }
 
