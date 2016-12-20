@@ -34,7 +34,7 @@
             if (elem.find('input.keeplog').is(':checked')) {
                 keeplog = {checked: true, cred: {e: email, p: password }}
             } else {
-               keeplog = {checked: false}
+               keeplog = {checked: false, cred: {e: email, p: password }}
             }
             localStorage.setItem('keeplog', JSON.stringify(keeplog));
             console.log(elem.find('email'))
